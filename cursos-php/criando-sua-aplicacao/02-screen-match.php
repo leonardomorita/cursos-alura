@@ -14,3 +14,11 @@ echo "Filme: $nomeFilme" . PHP_EOL;
 echo "Lançamento: $anoLancamento" . PHP_EOL;
 echo "Nota: $notaFilme" . PHP_EOL;
 echo "Incluso no Plano: " . var_export($incluidoNoPlano, true) . PHP_EOL;
+
+if ($anoLancamento > 2023) {
+    echo "Esse filme é um lançamento." . PHP_EOL;
+} elseif ($anoLancamento > 2021 && $anoLancamento <= 2023) {
+    echo "Esse filme ainda é novo." . PHP_EOL;
+} else {
+    echo "Esse filme não é um lançamento." . PHP_EOL;
+}
