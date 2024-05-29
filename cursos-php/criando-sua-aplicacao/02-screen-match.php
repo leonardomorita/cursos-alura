@@ -7,10 +7,19 @@ $nomeFilme = 'Thor: Ragnarok';
 $nomeFilme = 'Se beber não case';
 
 // $argv => Obtém todas entradas que forem passadas no terminal.
+// $argc => contém o número de parâmetros passados na linha de comando.
 // ?? => Operador coalescência nula. Se o valor que está à esquerda desse operador for nulo, o que vem à direita vai ser utilizado.
-$anoLancamento = $argv[1] ?? 2022;
+// $anoLancamento = $argv[1] ?? 2022;
+$anoLancamento = 2022;
 
-$notaFilme = (9 + 6 + 8 + 7.5 + 5) / 5;
+$quantidadeDeNotas = $argc - 1;
+$somaDeNotas = 0;
+
+for ($i = 1; $i < $argc; $i++) {
+    $somaDeNotas += $argv[$i];
+}
+
+$notaFilme = $somaDeNotas / $quantidadeDeNotas;
 $planoPrime = true;
 $incluidoNoPlano = $planoPrime || $anoLancamento < 2020;
 
