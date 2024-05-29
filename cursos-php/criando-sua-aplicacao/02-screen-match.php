@@ -13,13 +13,19 @@ $nomeFilme = 'Se beber não case';
 $anoLancamento = 2022;
 
 $quantidadeDeNotas = $argc - 1;
-$somaDeNotas = 0;
 
+$notas = [];
 for ($i = 1; $i < $argc; $i++) {
-    $somaDeNotas += $argv[$i];
+    $notas[] = (float) $argv[$i];
 }
 
-$notaFilme = $somaDeNotas / $quantidadeDeNotas;
+// $somaDeNotas = 0;
+// foreach ($notas as $nota) {
+//     $somaDeNotas += $nota;
+// }
+
+// array_sum() => função para somar todos os valores dentro de um array
+$notaFilme = array_sum($notas) / $quantidadeDeNotas;
 $planoPrime = true;
 $incluidoNoPlano = $planoPrime || $anoLancamento < 2020;
 
