@@ -1,6 +1,6 @@
 <?php
 
-function exibirMensagemLancamento($ano)
+function exibirMensagemLancamento(int $ano): void
 {
     if ($ano > 2023) {
         echo "Esse filme é um lançamento." . PHP_EOL;
@@ -11,7 +11,7 @@ function exibirMensagemLancamento($ano)
     }
 }
 
-function incluidoNoPlano($planoPrime, $anoLancamento)
+function incluidoNoPlano(bool $planoPrime, int $anoLancamento): bool
 {
     return $planoPrime || $anoLancamento < 2020;
 }
