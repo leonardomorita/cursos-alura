@@ -46,7 +46,7 @@ $genero = match ($nomeFilme) {
 echo "O gênero do filme é: $genero" . PHP_EOL;
 
 var_dump($notas);
-// sort() => Função do PHP que ordenar elementos do array. O segundo parâmetro seria qual ordem, e por padrão é ascendente.
+// sort() => Função do PHP que ordenar elementos do array em ordem ascendente. O segundo parâmetro opcional flags pode ser usado para modificar o comportamento da ordenação usando estes valores.
 sort($notas);
 var_dump($notas);
 
