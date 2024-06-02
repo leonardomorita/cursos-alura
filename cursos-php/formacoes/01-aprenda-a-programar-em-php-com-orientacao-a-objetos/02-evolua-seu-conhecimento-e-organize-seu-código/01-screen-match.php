@@ -18,9 +18,9 @@ function incluidoNoPlano(bool $planoPrime, int $anoLancamento): bool
 
 echo 'Bem-vindo(a) ao Screen Match!' . PHP_EOL;
 
-$nomeFilme = 'Top Gun - Maverick';
+// $nomeFilme = 'Top Gun - Maverick';
 $nomeFilme = 'Thor: Ragnarok';
-$nomeFilme = 'Se beber não case';
+// $nomeFilme = 'Se beber não case';
 
 // $argv => Obtém todas entradas que forem passadas no terminal.
 // $argc => contém o número de parâmetros passados na linha de comando.
@@ -67,3 +67,9 @@ var_dump($notas);
 // min() => Função do PHP que retorna o menor valor do array ou faz comparação do parâmetro 1 e 2.
 $menorNota = min($notas);
 var_dump($menorNota);
+
+// strpos() => Função que retorna a posição da primeira ocorrência do termo que esteja procurando.
+$posicaoDoisPontos = strpos($nomeFilme, ':');
+
+// substr() => Função que retorna uma parte da string. Apenas para PHP 8.0+.
+var_dump(substr($nomeFilme, 0, $posicaoDoisPontos));
