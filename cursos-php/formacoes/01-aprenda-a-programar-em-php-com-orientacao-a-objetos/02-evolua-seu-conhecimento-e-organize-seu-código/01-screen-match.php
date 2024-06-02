@@ -58,3 +58,12 @@ $genero = match ($nomeFilme) {
 };
 
 echo "O gênero do filme é: $genero" . PHP_EOL;
+
+var_dump($notas);
+// sort() => Função do PHP que ordenar elementos do array. O segundo parâmetro seria qual ordem, e por padrão é ascendente.
+sort($notas);
+var_dump($notas);
+
+// min() => Função do PHP que retorna o menor valor do array ou faz comparação do parâmetro 1 e 2.
+$menorNota = min($notas);
+var_dump($menorNota);
