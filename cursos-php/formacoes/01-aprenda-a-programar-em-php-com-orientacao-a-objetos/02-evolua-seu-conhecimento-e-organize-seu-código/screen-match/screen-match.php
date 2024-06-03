@@ -59,3 +59,17 @@ $posicaoDoisPontos = strpos($nomeFilme, ':');
 
 // substr() => Função que retorna uma parte da string. Apenas para PHP 8.0+.
 var_dump(substr($nomeFilme, 0, $posicaoDoisPontos));
+
+$filme = [
+    "nome" => "Thor: Ragnarok",
+    "ano" => 2021,
+    "nota" => 7.8,
+    "genero" => "super-herói",
+];
+
+// JSON => Javascript Object Notation (Notação de Objeto JavaScript).
+// json_encode() => Função que converte um valor para JSON.
+echo json_encode($filme) . PHP_EOL;
+
+// json_decode() => Função que decodifica um valor JSON para um tipo que o PHP saiba manipular.
+var_dump(json_decode('{"nome":"Thor: Ragnarok","ano":2021,"nota":7.8,"genero":"super-her\u00f3i"}', true));
