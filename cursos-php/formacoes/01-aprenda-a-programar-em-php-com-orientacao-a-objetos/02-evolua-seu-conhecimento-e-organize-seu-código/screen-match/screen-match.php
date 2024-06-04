@@ -72,6 +72,3 @@ $filme = [
 $filmeFormatoJson = json_encode($filme);
 // file_put_contents() => Função que coloca uma string dentro do arquivo.
 file_put_contents(__DIR__ . '/filme.json', $filmeFormatoJson);
-
-// json_decode() => Função que decodifica um valor JSON para um tipo que o PHP saiba manipular.
-var_dump(json_decode('{"nome":"Thor: Ragnarok","ano":2021,"nota":7.8,"genero":"super-her\u00f3i"}', true));
