@@ -7,4 +7,7 @@ $filme = [
     'genero' => $_POST['genero']
 ];
 
-file_put_contents('filme.json', json_encode($filme));
+file_put_contents(__DIR__ . '/filme.json', json_encode($filme));
+
+// Redirecionar o usuário para uma determinada URL.
+header('Location: /sucesso.php?filme=' . $filme['nome']);
