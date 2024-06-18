@@ -11,7 +11,7 @@ $filme->avalia(6);
 $filme->avalia(7.8);
 $filme->avalia(8.2);
 
-var_dump('Nome: ' . $filme->nome());
-var_dump('Ano do Lançamento: ' . $filme->anoLancamento());
-var_dump('Gênero: ' . $filme->genero());
-var_dump('Média de notas: ' . $filme->mediaNota());
+var_dump("Nome: $filme->nome");
+var_dump("Ano do Lançamento: $filme->anoLancamento");
+var_dump("Gênero: $filme->genero");
+var_dump("Média de notas: {$filme->mediaNota()}");
