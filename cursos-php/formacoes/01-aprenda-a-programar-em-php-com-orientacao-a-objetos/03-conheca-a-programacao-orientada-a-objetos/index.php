@@ -4,6 +4,7 @@ require __DIR__ . '/src/Modelo/Genero.php';
 require __DIR__ . '/src/Modelo/Titulo.php';
 require __DIR__ . '/src/Modelo/Filme.php';
 require __DIR__ . '/src/Modelo/Serie.php';
+require __DIR__ . '/src/Calculos/CalculadoraDeMaratona.php';
 
 echo 'Bem-vindo(a) ao Screen Match!' . PHP_EOL;
 
@@ -38,5 +39,11 @@ var_dump("Ano do Lançamento: $serie->anoLancamento");
 var_dump("Gênero: {$serie->genero->name}");
 var_dump("Média de notas: {$serie->mediaNota()}");
 var_dump("Temporadas: {$serie->temporadas}");
-var_dump("Episódios por temporadas: {$serie->episodiosPorTemporadas}");
+var_dump("Episódios por temporadas: {$serie->episodiosPorTemporada}");
 var_dump("Minutos por episódios: {$serie->minutosPorEpisodio} minutos");
+
+$calculadora = new CalculadoraDeMaratona();
+$calculadora->inclui($filme);
+$calculadora->inclui($serie);
+
+var_dump("Para essa maratona, você precisa de {$calculadora->duracao()} minutos");
