@@ -1,10 +1,13 @@
 <?php
 
+require __DIR__ . '/src/Modelo/Avaliavel.php';
 require __DIR__ . '/src/Modelo/Genero.php';
 require __DIR__ . '/src/Modelo/Titulo.php';
+require __DIR__ . '/src/Modelo/Episodio.php';
 require __DIR__ . '/src/Modelo/Filme.php';
 require __DIR__ . '/src/Modelo/Serie.php';
 require __DIR__ . '/src/Calculos/CalculadoraDeMaratona.php';
+require __DIR__ . '/src/Calculos/ConversorNotaEstrela.php';
 
 echo 'Bem-vindo(a) ao Screen Match!' . PHP_EOL;
 
@@ -42,8 +45,13 @@ var_dump("Temporadas: {$serie->temporadas}");
 var_dump("Episódios por temporadas: {$serie->episodiosPorTemporada}");
 var_dump("Minutos por episódios: {$serie->minutosPorEpisodio} minutos");
 
+$episodio1 = new Episodio($serie, 'Episódio 01', 1);
+
 $calculadora = new CalculadoraDeMaratona();
 $calculadora->inclui($filme);
 $calculadora->inclui($serie);
 
 var_dump("Para essa maratona, você precisa de {$calculadora->duracao()} minutos");
+
+$conversor = new ConversorNotaEstrela();
+var_dump($conversor->converte($serie));
