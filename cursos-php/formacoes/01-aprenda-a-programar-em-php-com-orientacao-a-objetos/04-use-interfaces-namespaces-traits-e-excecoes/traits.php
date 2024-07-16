@@ -34,11 +34,11 @@ class Aliased_Talker {
 }
 
 $talker = new Talker();
-$talker->smallTalk();
-$talker->bigTalk();
+$talker->smallTalk(); // b
+$talker->bigTalk(); // A
 
 $aliasedTalker = new Aliased_Talker();
-$aliasedTalker->smallTalk();
-$aliasedTalker->bigTalk();
-$aliasedTalker->talk();
-$aliasedTalker->smallTalkA();
+$aliasedTalker->smallTalk(); // b
+$aliasedTalker->bigTalk(); // A
+$aliasedTalker->talk(); // B
+$aliasedTalker->smallTalkA(); // a
