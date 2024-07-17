@@ -10,6 +10,14 @@ require __DIR__ . '/src/Modelo/Serie.php';
 require __DIR__ . '/src/Calculos/CalculadoraDeMaratona.php';
 require __DIR__ . '/src/Calculos/ConversorNotaEstrela.php';
 
+use ScreenMatch\Modelo\{
+    Filme, Genero, Serie, Episodio
+};
+
+use ScreenMatch\Calculos\{
+    CalculadoraDeMaratona, ConversorNotaEstrela
+};
+
 echo 'Bem-vindo(a) ao Screen Match!' . PHP_EOL;
 
 echo PHP_EOL;
