@@ -3,6 +3,7 @@
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'autoload.php';
 
 use ScreenMatch\Calculos\ConversorNotaEstrela;
+use ScreenMatch\Excecoes\NotaInvalidaException;
 use ScreenMatch\Modelo\Episodio;
 use ScreenMatch\Modelo\Serie;
 use ScreenMatch\Modelo\Genero;
@@ -16,6 +17,6 @@ try {
     
     $conversor = new ConversorNotaEstrela();
     var_dump($conversor->converte($episodio1));
-} catch (Exception $exception) {
-    var_dump("Aconteceu um problema: {$exception->getMessage()}");
+} catch (NotaInvalidaException $notaInvalidaException) {
+    var_dump("Aconteceu um problema: {$notaInvalidaException->getMessage()}");
 }
