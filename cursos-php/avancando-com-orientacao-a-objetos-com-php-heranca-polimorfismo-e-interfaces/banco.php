@@ -1,10 +1,6 @@
 <?php
 
-require_once 'src/Modelo/Conta/Conta.php';
-require_once 'src/Modelo/Pessoa.php';
-require_once 'src/Modelo/Conta/Titular.php';
-require_once 'src/Modelo/CPF.php';
-require_once 'src/Modelo/Endereco.php';
+require_once __DIR__ . DIRECTORY_SEPARATOR . 'autoload.php';
 
 use Alura\Banco\Modelo\CPF;
 use Alura\Banco\Modelo\Endereco;
