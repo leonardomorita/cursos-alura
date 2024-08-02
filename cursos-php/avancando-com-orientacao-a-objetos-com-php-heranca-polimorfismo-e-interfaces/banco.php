@@ -1,9 +1,15 @@
 <?php
 
-require_once 'src/Conta.php';
-require_once 'src/Titular.php';
-require_once 'src/CPF.php';
-require_once 'src/Endereco.php';
+require_once 'src/Modelo/Conta/Conta.php';
+require_once 'src/Modelo/Pessoa.php';
+require_once 'src/Modelo/Conta/Titular.php';
+require_once 'src/Modelo/CPF.php';
+require_once 'src/Modelo/Endereco.php';
+
+use Alura\Banco\Modelo\CPF;
+use Alura\Banco\Modelo\Endereco;
+use Alura\Banco\Modelo\Conta\Conta;
+use Alura\Banco\Modelo\Conta\Titular;
 
 $endereco = new Endereco('Cidade Um', 'Bairro Teste', 'Rua Teste', '123');
 
