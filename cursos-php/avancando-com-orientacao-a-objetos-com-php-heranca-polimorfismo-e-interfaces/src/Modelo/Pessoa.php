@@ -2,8 +2,18 @@
 
 namespace Alura\Banco\Modelo;
 
+/**
+ * Class Pessoa
+ * 
+ * @package Alura\Banco\Modelo
+ * 
+ * @property-read string $nome
+ * @property-read CPF $cpf
+ */
 abstract class Pessoa
 {
+    use AcessoPropriedade;
+
     private $nome;
     private $cpf;
 
@@ -24,7 +34,7 @@ abstract class Pessoa
         return $this->cpf->recuperaNumero();
     }
 
-    private function validaNome(string $nome): void
+    final protected function validaNome(string $nome): void
     {
         if (strlen($nome) < 5) {
             echo "Nome precisa ter pelo menos 5 caracteres";
