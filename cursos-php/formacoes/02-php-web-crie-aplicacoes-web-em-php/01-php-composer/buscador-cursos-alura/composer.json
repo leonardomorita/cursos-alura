@@ -28,5 +28,22 @@
         "phpunit/phpunit": "*",
         "squizlabs/php_codesniffer": "^3.10",
         "phan/phan": "^5.4"
+    },
+    "scripts": {
+        "test": "phpunit tests\\TestBuscadorDeCursos.php",
+        "cs": "phpcs --standard=PSR12 src/",
+        "phan": "phan --allow-polyfill-parser",
+        "check": [
+            "@phan",
+            "@cs",
+            "@test"
+        ],
+        "post-update-cmd": ["@test"]
+    },
+    "scripts-descriptions": {
+        "check": "Runs codes checks. PHAN, PHPCS and PHPUNIT.",
+        "test": "Runs TestBuscadorDeCursos.php test.",
+        "cs": "Runs code sniffer. Verify if the codes are following PSR-12 standard.",
+        "phan": "Runs Phan. Verify if there are syntax errors on the codes."
     }
 }
