@@ -1,6 +1,7 @@
+#!/usr/bin/env php
 <?php
 
-require_once __DIR__ . DIRECTORY_SEPARATOR . 'vendor/autoload.php';
+require_once 'vendor/autoload.php';
 
 use Alura\BuscadorDeCursos\Buscador;
 use GuzzleHttp\Client;

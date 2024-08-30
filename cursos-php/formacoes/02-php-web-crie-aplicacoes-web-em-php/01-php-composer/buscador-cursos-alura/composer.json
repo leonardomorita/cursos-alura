@@ -45,5 +45,9 @@
         "test": "Runs TestBuscadorDeCursos.php test.",
         "cs": "Runs code sniffer. Verify if the codes are following PSR-12 standard.",
         "phan": "Runs Phan. Verify if there are syntax errors on the codes."
-    }
+    },
+    "license": "GPL-3.0",
+    "bin": [
+        "buscar-cursos"
+    ]
 }
