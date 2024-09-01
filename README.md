@@ -13,5 +13,8 @@ O repositório tem todos os materiais que foram desenvolvidos durante os cursos.
 ##### PHP Web: crie aplicações web em PHP
 1. PHP Composer: Dependências, Autoload e Publicação
 
+##### Boas práticas em PHP
+1. PHP e TDD: testes com PHPUnit
+
 #### Cursos Independentes
 - Avançando com Orientação a Objetos com PHP: Herança, Polimorfismo e Interfaces
