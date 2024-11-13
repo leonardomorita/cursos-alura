@@ -1,5 +1,5 @@
 <x-layout title="Nova Série">
-    <form action="/series/salvar" method="POST">
+    <form action="{{ route('series.store') }}" method="POST">
         @csrf
 
         <div class="mb-3">

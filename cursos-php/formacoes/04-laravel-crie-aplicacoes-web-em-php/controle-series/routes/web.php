@@ -15,9 +15,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return redirect()->route('series.index');
 });
 
-Route::get('/series', [SeriesController::class, 'index']);
-Route::get('/series/criar', [SeriesController::class, 'create']);
-Route::post('/series/salvar', [SeriesController::class, 'store']);
+// Formas de implementar um grupo de rotas
+
+// 1
+// Route::controller(SeriesController::class)->group(function () {
+//     Route::get('/series', 'index')->name('series.index');
+//     Route::get('/series/criar', 'create')->name('series.create');
+//     Route::post('/series/salvar', 'store')->name('series.store');
+// });
+
+// 2
+Route::resource('/series', SeriesController::class);
