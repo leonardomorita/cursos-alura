@@ -29,4 +29,8 @@ Route::get('/', function () {
 // });
 
 // 2
-Route::resource('/series', SeriesController::class);
+Route::resource('/series', SeriesController::class)
+    ->except(['show']); // O 'show' informa para o Laravel que somente essas rotas não vão ser implementadas.
+    // ->only(['index', 'create', 'store', 'destroy', 'edit', 'update']); // O 'only' informa para o Laravel que somente essas rotas estão implementadas.
+
+// ===

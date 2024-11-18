@@ -16,7 +16,7 @@ O repositório tem todos os materiais que foram desenvolvidos durante os cursos.
 ##### Boas práticas em PHP
 1. PHP e TDD: testes com PHPUnit
 
-##### Laravel: crie aplicações web em PHP
+##### 4 - Laravel: crie aplicações web em PHP
 1. Laravel: criando uma aplicação com MVC
 
 #### Cursos Independentes
