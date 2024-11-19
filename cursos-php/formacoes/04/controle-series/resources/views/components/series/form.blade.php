@@ -1,7 +1,7 @@
 <form action="{{ $action }}" method="POST">
     @csrf
 
-    @isset($nome)
+    @isset($update)
         @method('PUT')
     @endisset
 
