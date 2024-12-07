@@ -11,9 +11,15 @@ class SeriesController extends Controller
 {
     public function index(Request $request)
     {
-        // $series = Serie::all();
-        $series = Serie::query()->orderBy('nome', 'asc')->get();
+        $series = Serie::all();
+        // $series = Serie::query()->orderBy('nome', 'asc')->get();
         // $series = DB::select('SELECT nome FROM series;');
+
+        // Buscar séries com escopo local
+        // $series = Serie::active();
+
+        // Buscar séries com suas temporadas
+        // $series = Serie::with(['temporadas'])->get();
 
         // $mensagemSucesso = $request->session()->get('mensagem.sucesso'); // Obter um valor da sessão
         $mensagemSucesso = session('mensagem.sucesso'); // Obter um valor da sessão, usando uma função do Helper do Laravel
