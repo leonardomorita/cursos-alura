@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SeriesFormRequest;
-use App\Models\Serie;
+use App\Models\Series;
 use Illuminate\Http\Request;
 // use Illuminate\Support\Facades\DB;
 
@@ -11,15 +11,15 @@ class SeriesController extends Controller
 {
     public function index(Request $request)
     {
-        $series = Serie::all();
-        // $series = Serie::query()->orderBy('nome', 'asc')->get();
+        $series = Series::all();
+        // $series = Series::query()->orderBy('nome', 'asc')->get();
         // $series = DB::select('SELECT nome FROM series;');
 
         // Buscar séries com escopo local
-        // $series = Serie::active();
+        // $series = Series::active();
 
         // Buscar séries com suas temporadas
-        // $series = Serie::with(['temporadas'])->get();
+        // $series = Series::with(['seasons'])->get();
 
         // $mensagemSucesso = $request->session()->get('mensagem.sucesso'); // Obter um valor da sessão
         $mensagemSucesso = session('mensagem.sucesso'); // Obter um valor da sessão, usando uma função do Helper do Laravel
@@ -48,31 +48,31 @@ class SeriesController extends Controller
 
         // Obter o parâmetro do formulário
         // 1
-        // $nomeSerie = $request->input('nome');
+        // $nomeSerie = $request->input('name');
 
         // 2
-        // $nomeSerie = $request->nome;
+        // $nomeSerie = $request->name;
 
         // Obter somente os parâmetros informado do formulário
-        // $request->only(['nome']);
+        // $request->only(['name']);
 
         // Obter todos os parâmetros do formulário, exceto o que for informado como parâmetro do método except
         // $request->except(['_token']);
 
         // Salvar o dado no banco de dados
         // 1
-        // DB::insert('INSERT INTO series (nome) VALUES (?)', [$nomeSerie]);
+        // DB::insert('INSERT INTO series (name) VALUES (?)', [$nomeSerie]);
 
         // 2
-        // $serie = new Serie();
-        // $serie->nome = $nomeSerie;
+        // $series = new Series();
+        // $serie->name = $nomeSerie;
         // $serie->save();
 
         // 3 - Mass Assignment
-        $serie = Serie::create($data);
+        $series = Series::create($data);
 
         // session(['mensagem.sucesso' => 'Série adicionada com sucesso']); // Adiciona um valor na sessão, porém não é flash message, pois essa função do helper não tem
-        // $request->session()->flash('mensagem.sucesso', "Série '{$serie->nome}' adicionada com sucesso");
+        // $request->session()->flash('mensagem.sucesso', "Série '{$series->name}' adicionada com sucesso");
 
         // Formas de redirecionar para uma URL utilizando o apelido da rota
         // 1
@@ -80,26 +80,26 @@ class SeriesController extends Controller
 
         // 2 - À partir do Laravel 9
         return to_route('series.index')
-            ->with('mensagem.sucesso', "Série '{$serie->nome}' adicionada com sucesso");
+            ->with('mensagem.sucesso', "Série '{$series->name}' adicionada com sucesso");
     }
 
-    public function edit(Serie $series)
+    public function edit(Series $series)
     {
         return view('series.edit')
-            ->with('serie', $series);
+            ->with('series', $series);
     }
 
-    public function update(Serie $series, SeriesFormRequest $request)
+    public function update(Series $series, SeriesFormRequest $request)
     {
         // Preencher todos os campos da Série com valores atualizados
         $series->fill($request->all());
         $series->save();
 
         return to_route('series.index')
-            ->with('mensagem.sucesso', "Série '{$series->nome}' atualizada com sucesso");
+            ->with('mensagem.sucesso', "Série '{$series->name}' atualizada com sucesso");
     }
 
-    public function destroy(Serie $series, Request $request)
+    public function destroy(Series $series, Request $request)
     {
         // Obter todos os parâmetros da rota
         // dd($request->route());
@@ -108,9 +108,9 @@ class SeriesController extends Controller
         // Serie::destroy($request->series);
 
         // $request->session()->put('mensagem.sucesso', 'Série removida com sucesso'); // Adicionar um valor na sessão
-        // $request->session()->flash('mensagem.sucesso', "Série '{$series->nome}' removida com sucesso"); // Adicionar um valor na sessão que dura uma requisição
+        // $request->session()->flash('mensagem.sucesso', "Série '{$series->name}' removida com sucesso"); // Adicionar um valor na sessão que dura uma requisição
 
         return to_route('series.index')
-            ->with('mensagem.sucesso', "Série '{$series->nome}' removida com sucesso");
+            ->with('mensagem.sucesso', "Série '{$series->name}' removida com sucesso");
     }
 }

@@ -6,20 +6,21 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Serie extends Model
+class Series extends Model
 {
     use HasFactory;
 
     // Informar os campos que vão poder ser atribuídos com mass assignment.
-    protected $fillable = ['nome'];
+    protected $fillable = ['name'];
 
     protected $table = 'series';
 
-    protected static function booted()
+    // Se toda vez precisar da tabela temporadas (seasons)
+    // protected $with = ['seasons'];
+
+    public function seasons()
     {
-        self::addGlobalScope('ordered', function(Builder $builder) {
-            $builder->orderBy('nome');
-        });
+        return $this->hasMany(Season::class, 'series_id');
     }
 
     // Exemplo de escopo local
@@ -28,8 +29,10 @@ class Serie extends Model
     //     return $builder->where('active', '=', true);
     // }
 
-    public function temporadas()
+    protected static function booted()
     {
-        return $this->hasMany(Season::class, 'series_id');
+        self::addGlobalScope('ordered', function(Builder $builder) {
+            $builder->orderBy('name');
+        });
     }
 }
