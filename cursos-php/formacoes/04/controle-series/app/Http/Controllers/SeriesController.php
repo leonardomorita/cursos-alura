@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SeriesFormRequest;
+use App\Models\Episode;
+use App\Models\Season;
 use App\Models\Series;
 use Illuminate\Http\Request;
 // use Illuminate\Support\Facades\DB;
@@ -70,6 +72,30 @@ class SeriesController extends Controller
 
         // 3 - Mass Assignment
         $series = Series::create($data);
+
+        $seasons = [];
+
+        for ($i = 1; $i <= $request->seasonQty; $i++) {
+            $seasons[] = [
+                'serie_id' => $series->id,
+                'season_number' => $i
+            ];
+        }
+
+        Season::insert($seasons);
+
+        $episodes = [];
+
+        foreach ($series->seasons as $season) {
+            for ($j = 1; $j <= $request->episodePerSeason; $j++) {
+                $episodes[] = [
+                    'season_id' => $season->id,
+                    'episode_number' => $j
+                ];
+            }
+        }
+
+        Episode::insert($episodes);
 
         // session(['mensagem.sucesso' => 'Série adicionada com sucesso']); // Adiciona um valor na sessão, porém não é flash message, pois essa função do helper não tem
         // $request->session()->flash('mensagem.sucesso', "Série '{$series->name}' adicionada com sucesso");

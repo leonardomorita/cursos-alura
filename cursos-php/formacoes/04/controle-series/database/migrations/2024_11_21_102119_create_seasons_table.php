@@ -22,7 +22,7 @@ return new class extends Migration
             // $table->unsignedBigInteger('series_id');
             // $table->foreign('series_id')->references('id')->on('series');
             // 2
-            $table->foreignId('series_id')->constrained();
+            $table->foreignId('series_id')->constrained()->onDelete('cascade');
             // 3 - Laravel 8+
             // $table->foreignIdFor(Serie::class, 'series_id')->constrained();
 

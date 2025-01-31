@@ -9,6 +9,8 @@ class Season extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['season_number'];
+
     public function series()
     {
         return $this->belongsTo(Series::class);

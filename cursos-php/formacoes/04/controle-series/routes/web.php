@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SeasonController;
 use App\Http\Controllers\SeriesController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,3 +35,5 @@ Route::resource('/series', SeriesController::class)
     // ->only(['index', 'create', 'store', 'destroy', 'edit', 'update']); // O 'only' informa para o Laravel que somente essas rotas estão implementadas.
 
 // ===
+
+Route::get('/series/{series}/seasons', [SeasonController::class, 'index'])->name('seasons.index');
