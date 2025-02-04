@@ -7,7 +7,7 @@ use App\Models\Episode;
 use App\Models\Season;
 use App\Models\Series;
 use Illuminate\Http\Request;
-// use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB;
 
 class SeriesController extends Controller
 {
@@ -70,32 +70,42 @@ class SeriesController extends Controller
         // $serie->name = $nomeSerie;
         // $serie->save();
 
-        // 3 - Mass Assignment
-        $series = Series::create($data);
+        /**
+         * Transações:
+         * 1- DB::transaction(function () {});
+         * 2- DB::beginTransaction(); ... DB::commit(); ... DB::rollback();
+         */
 
-        $seasons = [];
+        $series = DB::transaction(function () use ($request, $data) {
+            // 3 - Mass Assignment
+            $series = Series::create($data);
 
-        for ($i = 1; $i <= $request->seasonQty; $i++) {
-            $seasons[] = [
-                'serie_id' => $series->id,
-                'season_number' => $i
-            ];
-        }
+            $seasons = [];
 
-        Season::insert($seasons);
-
-        $episodes = [];
-
-        foreach ($series->seasons as $season) {
-            for ($j = 1; $j <= $request->episodePerSeason; $j++) {
-                $episodes[] = [
-                    'season_id' => $season->id,
-                    'episode_number' => $j
+            for ($i = 1; $i <= $request->seasonQty; $i++) {
+                $seasons[] = [
+                    'series_id' => $series->id,
+                    'season_number' => $i
                 ];
             }
-        }
 
-        Episode::insert($episodes);
+            Season::insert($seasons);
+
+            $episodes = [];
+
+            foreach ($series->seasons as $season) {
+                for ($j = 1; $j <= $request->episodePerSeason; $j++) {
+                    $episodes[] = [
+                        'season_id' => $season->id,
+                        'episode_number' => $j
+                    ];
+                }
+            }
+
+            Episode::insert($episodes);
+
+            return $series;
+        });
 
         // session(['mensagem.sucesso' => 'Série adicionada com sucesso']); // Adiciona um valor na sessão, porém não é flash message, pois essa função do helper não tem
         // $request->session()->flash('mensagem.sucesso', "Série '{$series->name}' adicionada com sucesso");
