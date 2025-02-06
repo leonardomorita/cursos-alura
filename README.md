@@ -18,6 +18,8 @@ O repositório tem todos os materiais que foram desenvolvidos durante os cursos.
 
 ##### 4 - Laravel: crie aplicações web em PHP
 1. Laravel: criando uma aplicação com MVC
+2. Laravel: validando formulários, usando sessões e definindo relacionamentos
+3. Laravel: transações, service container e autenticação
 
 #### Cursos Independentes
 - Avançando com Orientação a Objetos com PHP: Herança, Polimorfismo e Interfaces

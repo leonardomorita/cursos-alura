@@ -6,11 +6,14 @@ use App\Http\Requests\SeriesFormRequest;
 use App\Models\Episode;
 use App\Models\Season;
 use App\Models\Series;
+use App\Repositories\SeriesRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Facades\DB;
 
 class SeriesController extends Controller
 {
+    public function __construct(private SeriesRepository $seriesRepository) {}
+
     public function index(Request $request)
     {
         $series = Series::all();
@@ -38,6 +41,7 @@ class SeriesController extends Controller
         return view('series.create');
     }
 
+    // public function store(SeriesRepository $seriesRepository, SeriesFormRequest $request)
     public function store(SeriesFormRequest $request)
     {
         // Validar campos
@@ -45,67 +49,8 @@ class SeriesController extends Controller
         //     'nome' => ['required', 'min:3']
         // ]);
 
-        // Obter todos os parâmetros do formulário
-        $data = $request->all();
-
-        // Obter o parâmetro do formulário
-        // 1
-        // $nomeSerie = $request->input('name');
-
-        // 2
-        // $nomeSerie = $request->name;
-
-        // Obter somente os parâmetros informado do formulário
-        // $request->only(['name']);
-
-        // Obter todos os parâmetros do formulário, exceto o que for informado como parâmetro do método except
-        // $request->except(['_token']);
-
-        // Salvar o dado no banco de dados
-        // 1
-        // DB::insert('INSERT INTO series (name) VALUES (?)', [$nomeSerie]);
-
-        // 2
-        // $series = new Series();
-        // $serie->name = $nomeSerie;
-        // $serie->save();
-
-        /**
-         * Transações:
-         * 1- DB::transaction(function () {});
-         * 2- DB::beginTransaction(); ... DB::commit(); ... DB::rollback();
-         */
-
-        $series = DB::transaction(function () use ($request, $data) {
-            // 3 - Mass Assignment
-            $series = Series::create($data);
-
-            $seasons = [];
-
-            for ($i = 1; $i <= $request->seasonQty; $i++) {
-                $seasons[] = [
-                    'series_id' => $series->id,
-                    'season_number' => $i
-                ];
-            }
-
-            Season::insert($seasons);
-
-            $episodes = [];
-
-            foreach ($series->seasons as $season) {
-                for ($j = 1; $j <= $request->episodePerSeason; $j++) {
-                    $episodes[] = [
-                        'season_id' => $season->id,
-                        'episode_number' => $j
-                    ];
-                }
-            }
-
-            Episode::insert($episodes);
-
-            return $series;
-        });
+        // $series = $seriesRepository->add($request);
+        $series = $this->seriesRepository->add($request);
 
         // session(['mensagem.sucesso' => 'Série adicionada com sucesso']); // Adiciona um valor na sessão, porém não é flash message, pois essa função do helper não tem
         // $request->session()->flash('mensagem.sucesso', "Série '{$series->name}' adicionada com sucesso");
